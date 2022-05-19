@@ -4,6 +4,6 @@
 
 @layer components{
     .icon{
-        @apply lg:h-9 lg:w-9 cursor-pointer rounded-sm lg:p-3 lg:hover:bg-gray-100
+        @apply lg:h-9 lg:w-9 text-sm cursor-pointer rounded-sm lg:p-3 lg:hover:bg-gray-100
     }
 }

@@ -2,8 +2,22 @@ import Image from 'next/image'
 import React from 'react'
 import { ChevronDownIcon, HomeIcon, SearchIcon,  MenuIcon} from '@heroicons/react/solid'
 import { PlusIcon, BellIcon, ChatIcon,  SparklesIcon, SpeakerphoneIcon, VideoCameraIcon, GlobeIcon} from '@heroicons/react/outline'
+import {signIn, signOut, useSession} from "next-auth/react"
 
 const Header = () => {
+    // Read the session that was created, and also renaming data to sesion
+    const {data: session} = useSession()
+
+    // Handler to call the signIn provider
+    const signInHandler= ()=>{
+        signIn()
+    }
+
+    // Hnadler to call the signout provider
+    const signOutHandler = ()=>{
+        signOut()
+    }
+
   return (
     //   Left side
     <div className='flex bg-white px-4 py-2 shadow-sm sticky top-0 z-50'>
@@ -43,13 +57,31 @@ const Header = () => {
             <MenuIcon className='icon' />
         </div>
 
-        {/* Signin and Sighnout */}
-        <div className='hidden item-center cursor-pointer space-x-2 border border-gray-100 p-2 lg:flex'>
-            <div className='relative h-5 w-5 flex-shrink-0'>
-                <Image src="https://links.papareact.com/23l" layout='fill' />
+        {/* Signin and Signout */}
+        {/* Terenary operator to check if a user is logged in or not through session */}
+        {session ? (
+            // Logout Logics
+            <div onClick={signOutHandler} className='hidden item-center cursor-pointer space-x-2 border border-gray-100 p-2 lg:flex'>
+                <div className='relative h-5 w-5 flex-shrink-0'>
+                    <Image src="https://links.papareact.com/23l" layout='fill' />
+                </div>
+                <div className='flex-1 text-xs'>
+                    <p className='truncate'>Hello {session.user?.name}</p>
+                    {/* <p className='text-gray-400'>Sign out</p> */}
+                    <p className='text-gray-400'>2 Karma</p>
+                </div>
+
+                <ChevronDownIcon className='h-5 flex-shrink-0' />
             </div>
-            <p className='text-gray-400'>Sign In</p>
-        </div>
+        ): (
+            // Logout Logics
+            <div onClick={signInHandler} className='hidden item-center cursor-pointer space-x-2 border border-gray-100 p-2 lg:flex'>
+                <div className='relative h-5 w-5 flex-shrink-0'>
+                    <Image src="https://links.papareact.com/23l" layout='fill' />
+                </div>
+                <p className='text-gray-400'>Sign In</p>
+            </div>
+        )}
     </div>
   )
 }
