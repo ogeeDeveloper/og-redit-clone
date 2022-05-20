@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Header from '../components/Header'
 
 const Home: NextPage = () => {
   return (
@@ -8,8 +7,6 @@ const Home: NextPage = () => {
       <Head>
         <title>OG-Redit-Clone</title>
       </Head>
-
-      <Header/>
       <h1>Hello</h1>
     </div>
   )
