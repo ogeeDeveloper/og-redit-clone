@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import PostBox from '../components/PostBox'
 
 const Home: NextPage = () => {
   return (
@@ -7,7 +8,8 @@ const Home: NextPage = () => {
       <Head>
         <title>OG-Redit-Clone</title>
       </Head>
-      <h1>Hello</h1>
+      {/* PostBox Component */}
+      <PostBox />
     </div>
   )
 }
